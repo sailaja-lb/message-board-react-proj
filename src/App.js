@@ -1,25 +1,36 @@
-import logo from './logo.svg';
-import './App.css';
+import Login from "./components/Login";
+import Home from "./components/Home";
+import Register from "./components/Register";
+import {Container} from "react-bootstrap";
+import {useSelector} from "react-redux";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+
+export function App({
+                      _Login = Login, _Home = Home, _Register = Register,
+                      _useSelector = useSelector
+                    }) {
+  const isLoggedIn = _useSelector(state => state.isLoggedIn);
+  const isRegister = _useSelector(state => state.isRegister);
+
+  if (isLoggedIn) {
+      return <Container>
+          <_Home/>
+      </Container>
+  } else if (isRegister) {
+      return <div style={{
+          position: 'absolute', left: '50%', top: '30%',
+          transform: 'translate(-50%, -50%)'
+      }}>
+          <_Register/>
+      </div>
+  } else {
+      return <div style={{
+          position: 'absolute', left: '50%', top: '30%',
+          transform: 'translate(-50%, -50%)'
+      }}>
+          <_Login/>
+      </div>
+  }
 }
 
 export default App;
