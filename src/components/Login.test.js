@@ -55,8 +55,8 @@ it('should dispatch REGISTER when Register button is clicked', () => {
 it('should dispatch LOGIN_ERROR when credentials entered are incorrect', () => {
     const dispatch = jest.fn()
     const credentials = {
-        username: '',
-        password: ''
+        username: 'user3',
+        password: 'password3'
     }
     const users = [
         {username: 'user1', password: 'password1'},
@@ -66,12 +66,8 @@ it('should dispatch LOGIN_ERROR when credentials entered are incorrect', () => {
         users
     }
     render(<Login _useDispatch={() => dispatch} _useSelector={fn => fn(currState)}/>)
-    const usernameElement = screen.getByPlaceholderText(/Username/);
-    expect(usernameElement).toBeInTheDocument();
-    const passwordElement = screen.getByPlaceholderText(/Password/);
-    expect(passwordElement).toBeInTheDocument();
-    //expect(screen.getByPlaceholderText('Username'), credentials.username)
-    //userEvent.type(screen.getByPlaceholderText('Password'), credentials.password)
+    userEvent.type(screen.getByPlaceholderText('Username'), credentials.username)
+    userEvent.type(screen.getByPlaceholderText('Password'), credentials.password)
     userEvent.click(screen.getByText('Login'))
     expect(dispatch).toHaveBeenCalledWith({type: LOGIN_ERROR})
 })
