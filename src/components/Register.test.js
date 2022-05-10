@@ -6,7 +6,7 @@ import {CREATE_USER} from "../modules/files";
 import {act} from "react-dom/test-utils";
 
 
-it('should show username and password inputs', () => {
+it('should show username and password input fields', () => {
     render(<Register _useDispatch={() => {}}/>);
     const userName = screen.getByPlaceholderText(/Username/);
     expect(userName).toBeInTheDocument();
@@ -14,13 +14,13 @@ it('should show username and password inputs', () => {
     expect(passWord).toBeInTheDocument();
 });
 
-it('should show Register button', () => {
+it('should show Submit button', () => {
     render(<Register _useDispatch={() => {}}/>);
-    const registerButton = screen.getByText(/Submit/i);
-    expect(registerButton).toBeInTheDocument();
+    const submitButton = screen.getByText(/Submit/);
+    expect(submitButton).toBeInTheDocument();
 });
 
-it('should dispatch Register with typed credentials when register button clicked', () => {
+it('should dispatch CREATE_USER with typed credentials when submit button clicked', () => {
     const mock = jest.fn()
     render(<Register _useDispatch={() => mock}/>)
     const credentials = {
@@ -28,12 +28,13 @@ it('should dispatch Register with typed credentials when register button clicked
         password: 'some password'
     }
     // eslint-disable-next-line testing-library/no-unnecessary-act
-    act(()=> {userEvent.type(screen.getByPlaceholderText('Username'), credentials.username)
-     userEvent.type(screen.getByPlaceholderText('Password'), credentials.password)
-        userEvent.click(screen.getByText(/Submit/i))})
-    // userEvent.type(screen.getByPlaceholderText('Username'), credentials.username)
-    // userEvent.type(screen.getByPlaceholderText('Password'), credentials.password)
+    // act(()=> {userEvent.type(screen.getByPlaceholderText('Username'), credentials.username)
+    //  userEvent.type(screen.getByPlaceholderText('Password'), credentials.password)
+    //     userEvent.click(screen.getByText(/Submit/))})
+    userEvent.type(screen.getByPlaceholderText('Username'), credentials.username)
+    userEvent.type(screen.getByPlaceholderText('Password'), credentials.password)
     //userEvent.click(screen.getByText(/Submit/i))
+    screen.getByText('Submit').click()
     expect(mock).toHaveBeenCalledWith({type: CREATE_USER, credentials})
 })
 
@@ -43,7 +44,7 @@ it('should show cancel button', () => {
     expect(cancelButton).toBeInTheDocument();
 });
 
-it('should dispatch LOGOUT when cancel button clicked', () => {
+it('should dispatch LOGOUT when cancel button is clicked', () => {
     const dispatch = jest.fn()
     render(<Register _useDispatch={() => dispatch}/>)
     screen.getByText('Cancel').click()
