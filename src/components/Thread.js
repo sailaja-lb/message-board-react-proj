@@ -3,6 +3,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {ADD_POST, DELETE_THREAD, EDIT_THREAD} from "../modules/files";
 import EditThread from "./EditThread";
 import Posts from "./Posts";
+import {BsFillTrashFill, BsPencilSquare} from "react-icons/bs";
 
 export default function Thread({
                                  thread, _useDispatch = useDispatch, _useSelector = useSelector,
@@ -22,13 +23,13 @@ export default function Thread({
                                 <Col xs='auto'>
                                     <Button title='Edit' variant={"outline-secondary"} size='sm'
                                             onClick={() => dispatch({type: EDIT_THREAD, thread})}>
-                                        Edit
+                                        <BsPencilSquare/>
                                     </Button>
                                 </Col>
                                 <Col xs='auto'>
                                     <Button title='Delete' variant={"outline-danger"} size='sm'
                                             onClick={() => dispatch({type: DELETE_THREAD, id})}>
-                                        Delete
+                                        <BsFillTrashFill/>
                                     </Button>
                                 </Col>
                             </>

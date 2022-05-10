@@ -1,4 +1,5 @@
 import {Button, Card, Col, Form, Row} from "react-bootstrap";
+import {BsFileEarmarkPlus, BsFileEarmarkX, BsXCircleFill} from "react-icons/bs";
 
 export default function ThreadInput({thread, onThreadChange, onCancel, onApply}) {
     const {title, date} = thread
@@ -9,13 +10,13 @@ export default function ThreadInput({thread, onThreadChange, onCancel, onApply})
                 <Col xs='auto'>
                     <Button title='Apply' variant={"outline-success"} size='sm'
                             onClick={onApply}>
-                        Apply
+                        <BsFileEarmarkPlus/>
                     </Button>
                 </Col>
                 <Col xs='auto'>
                     <Button title='Cancel' variant={"outline-danger"} size='sm'
                             onClick={onCancel}>
-                        Cancel
+                        <BsXCircleFill/>
                     </Button>
                 </Col>
                 <Col xs='auto'>
