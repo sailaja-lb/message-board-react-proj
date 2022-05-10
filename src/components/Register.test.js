@@ -3,6 +3,7 @@ import Register from './Register';
 import userEvent from "@testing-library/user-event";
 import {LOGOUT} from "../modules/files";
 import {CREATE_USER} from "../modules/files";
+import {act} from "react-dom/test-utils";
 
 
 it('should show username and password inputs', () => {
