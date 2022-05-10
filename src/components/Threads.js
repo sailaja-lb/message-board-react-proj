@@ -9,7 +9,7 @@ export default function Threads({_useSelector = useSelector, _Thread = Thread, _
     return (
         <>
             {threadToAdd ? <div><_AddThread/><hr/></div> : null}
-            {threads.map((thread, index) => <div>
+            {threads.map((thread, index) => <div key={index}>
                 <_Thread thread={thread}/>
                 <hr/>
             </div>)
