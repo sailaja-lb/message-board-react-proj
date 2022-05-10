@@ -176,7 +176,7 @@ it('should set postToAdd when ADD_POST action is performed', () => {
     })
     expect(state.postToThreadId).toBe(thread.id)
 })
-it('should set postToAdd to null when CANCEL_ADD_POST is performed', () => {
+it('should set postToAdd and potToThreadId to null when CANCEL_ADD_POST is performed', () => {
     const currentState = reducer()
     currentState.postToAdd = {message: 'msg', user: 'user1', date: new Date() }
     currentState.postToThreadId = 0

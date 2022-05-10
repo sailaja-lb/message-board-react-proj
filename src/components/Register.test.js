@@ -27,9 +27,13 @@ it('should dispatch Register with typed credentials when register button clicked
         username: 'some username',
         password: 'some password'
     }
-    userEvent.type(screen.getByPlaceholderText('Username'), credentials.username)
-    userEvent.type(screen.getByPlaceholderText('Password'), credentials.password)
-    userEvent.click(screen.getByText(/Submit/i))
+    // eslint-disable-next-line testing-library/no-unnecessary-act
+    act(()=> {userEvent.type(screen.getByPlaceholderText('Username'), credentials.username)
+     userEvent.type(screen.getByPlaceholderText('Password'), credentials.password)
+        userEvent.click(screen.getByText(/Submit/i))})
+    // userEvent.type(screen.getByPlaceholderText('Username'), credentials.username)
+    // userEvent.type(screen.getByPlaceholderText('Password'), credentials.password)
+    //userEvent.click(screen.getByText(/Submit/i))
     expect(mock).toHaveBeenCalledWith({type: CREATE_USER, credentials})
 })
 

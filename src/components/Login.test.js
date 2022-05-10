@@ -1,7 +1,7 @@
 import { render, screen } from '@testing-library/react';
 import Login from './Login';
 import userEvent from "@testing-library/user-event";
-import reducer, {LOGIN, LOGIN_ERROR, REGISTER} from "../modules/files";
+import {LOGIN, LOGIN_ERROR, REGISTER} from "../modules/files";
 
 
 it('should show username and password inputs', () => {

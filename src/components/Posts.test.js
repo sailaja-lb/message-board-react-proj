@@ -1,5 +1,4 @@
 import {render, screen} from "@testing-library/react";
-import {ADD_POST, DELETE_THREAD, EDIT_THREAD} from "../modules/files";
 import Posts from "./Posts";
 
 it('should show post, user, date', () => {
