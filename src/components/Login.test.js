@@ -42,6 +42,7 @@ it('should dispatch LOGIN with typed creds are correct and login button clicked'
     userEvent.type(screen.getByPlaceholderText('Username'), credentials.username)
     userEvent.type(screen.getByPlaceholderText('Password'), credentials.password)
     userEvent.click(screen.getByText('Login'))
+    //screen.getByText('Login').click()
     expect(dispatch).toHaveBeenCalledWith({type: LOGIN, credentials})
 })
 it('should dispatch LOGIN_ERROR when typed credentials entered are incorrect', () => {

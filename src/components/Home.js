@@ -1,6 +1,6 @@
 import {useDispatch, useSelector} from "react-redux";
 import {LOGOUT, ADD_THREAD} from "../modules/files";
-import {Button, Card, Col, Row} from "react-bootstrap";
+import {Button, Col, Row} from "react-bootstrap";
 import Threads from "./Threads";
 import UsersList from "./UsersList";
 import MessagesList from "./MessagesList";
