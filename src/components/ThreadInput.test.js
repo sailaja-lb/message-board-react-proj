@@ -28,7 +28,7 @@ it('should call onCancel when cancel button clicked', () => {
     }
     //const setThread = jest.fn()
     const cancel = jest.fn()
-    const apply = jest.fn()
+    //const apply = jest.fn()
 
     render(<ThreadInput thread={thread}
                         //onThreadChange={setThread}

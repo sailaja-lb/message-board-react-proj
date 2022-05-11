@@ -19,7 +19,7 @@ export default function Posts({thread, _useDispatch = useDispatch, _useSelector 
                     <Card.Body>
                         {post.message}
                         <div>
-                            <sub>{post.user} </sub><sub> {post.date.toLocaleString()}</sub>
+                            <sub>{post.user} </sub><sub> {post.date.toISOString().substring(0, 10)}</sub>
                         </div>
                     </Card.Body>
                 </Card>

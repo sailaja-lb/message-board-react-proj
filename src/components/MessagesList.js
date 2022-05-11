@@ -13,7 +13,7 @@ export default function MessagesList({_useSelector = useSelector}) {
                     <div key={index}>
                         {msg.message}
                         <div>
-                            <sub>{msg.from} {msg.date.toLocaleString()}</sub>
+                            <sub>{msg.from} {msg.date.toISOString().substring(0, 10)}</sub>
                         </div>
                         <hr />
                     </div> :

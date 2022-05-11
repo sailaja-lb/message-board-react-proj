@@ -46,7 +46,7 @@ export default function Thread({
                 <Card.Body>
                     {title}
                     <div>
-                        <sub>{user} </sub><sub> {date.toLocaleString()}</sub>
+                        <sub>{user} </sub><sub> {date.toISOString().substring(0, 10)}</sub>
                     </div>
                 </Card.Body>
             </Card>

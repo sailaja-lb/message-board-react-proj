@@ -10,7 +10,7 @@ test('should show date, title, username in thread', () => {
     const state = {loggedInUser: user, postToThreadId: threadId}
     render(<Thread thread={{id: threadId, date, title, user}} _useDispatch={() => {}}
                  _useSelector={fn => fn(state)} _Posts={() => {}} _EditThread={() => {}}/>)
-    expect(screen.getByText(date.toLocaleString())).toBeInTheDocument()
+    expect(screen.getByText(date.toISOString().substring(0, 10))).toBeInTheDocument()
     expect(screen.getByText(title)).toBeInTheDocument()
     expect(screen.getByText(user)).toBeInTheDocument()
 
