@@ -42,11 +42,9 @@ function Login({_useDispatch = useDispatch, _useSelector = useSelector}) {
     return <Card style={{borderWidth: 0}}>
         <Card.Body>
             {successfulRegisterMessage ? (<Alert variant={"success"}>
-                    Successfully Registered. Please login
-                </Alert>) : null}
+                    Successfully Registered. Please login</Alert>) : null}
             {loginErrorMessage ? (<Alert variant={"danger"}>
-                Failed to login
-            </Alert>) : null}
+                Failed to login</Alert>) : null}
             <Form onSubmit={handleSubmit}>
                 <InputGroup className="mb-2">
                     <InputGroup.Text><BsPerson/></InputGroup.Text>

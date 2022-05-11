@@ -24,7 +24,7 @@ it('should show register button', () => {
     expect(registerButton).toBeInTheDocument();
 });
 
-it('should dispatch LOGIN with typed creds when login button clicked', () => {
+it('should dispatch LOGIN with typed creds are correct and login button clicked', () => {
     const dispatch = jest.fn()
     const credentials = {
         username: 'user1',
@@ -44,15 +44,7 @@ it('should dispatch LOGIN with typed creds when login button clicked', () => {
     userEvent.click(screen.getByText('Login'))
     expect(dispatch).toHaveBeenCalledWith({type: LOGIN, credentials})
 })
-
-it('should dispatch REGISTER when Register button is clicked', () => {
-    const dispatch = jest.fn()
-    render(<Login _useDispatch={() => dispatch} _useSelector={() => {}}/>)
-    userEvent.click(screen.getByText('Register'))
-    expect(dispatch).toHaveBeenCalledWith({type: REGISTER})
-})
-
-it('should dispatch LOGIN_ERROR when credentials entered are incorrect', () => {
+it('should dispatch LOGIN_ERROR when typed credentials entered are incorrect', () => {
     const dispatch = jest.fn()
     const credentials = {
         username: 'user3',
@@ -71,3 +63,11 @@ it('should dispatch LOGIN_ERROR when credentials entered are incorrect', () => {
     userEvent.click(screen.getByText('Login'))
     expect(dispatch).toHaveBeenCalledWith({type: LOGIN_ERROR})
 })
+
+it('should dispatch REGISTER when Register button is clicked', () => {
+    const dispatch = jest.fn()
+    render(<Login _useDispatch={() => dispatch} _useSelector={() => {}}/>)
+    userEvent.click(screen.getByText('Register'))
+    expect(dispatch).toHaveBeenCalledWith({type: REGISTER})
+})
+
