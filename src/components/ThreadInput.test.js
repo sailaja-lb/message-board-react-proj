@@ -2,13 +2,11 @@ import {render, screen} from "@testing-library/react";
 import ThreadInput from "./ThreadInput";
 import userEvent from "@testing-library/user-event";
 
-test('should show input fields with current thread data', () => {
+it('should show input fields with current thread data', () => {
     let thread = {
         date: new Date(),
-        title: 'Title1',
-        user: ''
+        title: 'Title1'
     }
-
     const setThread = jest.fn()
     const cancel = jest.fn()
     const apply = jest.fn()
@@ -26,16 +24,17 @@ test('should show input fields with current thread data', () => {
 it('should call onCancel when cancel button clicked', () => {
     let thread = {
         date: new Date(),
-        title: 'Desc1Title1',
-        user: ''
+        title: 'Title1'
     }
-
-    const setThread = jest.fn()
+    //const setThread = jest.fn()
     const cancel = jest.fn()
     const apply = jest.fn()
 
-    render(<ThreadInput thread={thread} onThreadChange={setThread} onCancel={cancel}
-                        onApply={apply}/>)
+    render(<ThreadInput thread={thread}
+                        //onThreadChange={setThread}
+                        onCancel={cancel}
+                        //onApply={apply}
+    />)
     screen.getByTitle('Cancel').click()
     expect(cancel).toHaveBeenCalled()
 })
@@ -43,11 +42,8 @@ it('should call onCancel when cancel button clicked', () => {
 it('should call onApply when the apply button is clicked', () => {
     let thread = {
         date: new Date(),
-        title: 'Desc1Title1',
-        user: ''
+        title: 'Title1',
     }
-
-
     const setThread = jest.fn()
     const cancel = jest.fn()
     const apply = jest.fn()
@@ -61,10 +57,8 @@ it('should call onApply when the apply button is clicked', () => {
 it('should dispatch EDIT_THREAD when any field changes', () => {
     const threadToEdit = {
         date: new Date(),
-        title: 'Title1',
-        user: ''
+        title: 'Title1'
     }
-
     const setThread = jest.fn()
     const cancel = jest.fn()
     const apply = jest.fn()

@@ -1,7 +1,6 @@
-import {render} from "@testing-library/react";
+import {render, screen} from "@testing-library/react";
 import AddThread from "./AddThread";
 import {APPLY_ADD_THREAD, CANCEL_ADD_THREAD} from "../modules/files";
-import {useSelector} from "react-redux";
 
 test('should supply thread, onThreadChange, onCancel, and onApply to ThreadInput', () => {
     let _onThreadChange
@@ -18,8 +17,8 @@ test('should supply thread, onThreadChange, onCancel, and onApply to ThreadInput
     const dispatch = jest.fn()
 
     const loggedInUser = 'some user';
-    render(<AddThread _useDispatch={() => dispatch}
-                    _ThreadInput={_ThreadInput} _useSelector={fn => fn({loggedInUser})}/>)
+    render(<AddThread _useDispatch={() => dispatch} _ThreadInput={_ThreadInput}
+                      _useSelector={fn => fn({loggedInUser})}/>)
     _onApply()
     expect(dispatch).toHaveBeenLastCalledWith({type: APPLY_ADD_THREAD, thread: _thread})
     _onCancel()

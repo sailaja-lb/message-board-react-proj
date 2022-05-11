@@ -27,8 +27,8 @@ export default function PostInput({post, onPostChange, onCancel, onApply}) {
             </Row>
         </Card.Header>
         <Card.Body>
-            <Form.Control as="textarea" rows={2} defaultValue={message}
-                          placeholder='Post message'
+            <Form.Control as="textarea" rows={2} placeholder='Post message'
+                          defaultValue={message}
                           onChange={e => onPostChange({...post, message: e.target.value})}/>
         </Card.Body>
     </Card>

@@ -1,8 +1,7 @@
 import { render, screen } from '@testing-library/react';
 import Register from './Register';
 import userEvent from "@testing-library/user-event";
-import {LOGOUT} from "../modules/files";
-import {CREATE_USER} from "../modules/files";
+import {CREATE_USER, REGISTER_CANCEL} from "../modules/files";
 import {act} from "react-dom/test-utils";
 
 
@@ -48,5 +47,5 @@ it('should dispatch LOGOUT when cancel button is clicked', () => {
     const dispatch = jest.fn()
     render(<Register _useDispatch={() => dispatch}/>)
     screen.getByText('Cancel').click()
-    expect(dispatch).toHaveBeenCalledWith({type: LOGOUT})
+    expect(dispatch).toHaveBeenCalledWith({type: REGISTER_CANCEL})
 })

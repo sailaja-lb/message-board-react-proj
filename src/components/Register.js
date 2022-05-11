@@ -1,7 +1,7 @@
 import {useState} from "react";
 import {Button, Card, Form, InputGroup, Row} from "react-bootstrap";
 import {useDispatch} from "react-redux";
-import {CREATE_USER, LOGOUT} from "../modules/files";
+import {CREATE_USER, REGISTER_CANCEL} from "../modules/files";
 import {BsLock, BsPerson} from "react-icons/bs";
 
 function Register({_useDispatch = useDispatch}) {
@@ -24,7 +24,7 @@ function Register({_useDispatch = useDispatch}) {
 
     function handleSubmit(event) {
         event.preventDefault();
-        setSubmit(true)
+        //setSubmit(true)
         sendCredentials();
     }
     return <Card style={{borderWidth: 0}}>
@@ -46,7 +46,7 @@ function Register({_useDispatch = useDispatch}) {
                     <Button type={'submit'} variant={"primary"}>Submit</Button>
                 </Row>
                 <Row className={'p-3'}>
-                    <Button type={'submit'} variant={"primary"} onClick={() => dispatch({type: LOGOUT})}>Cancel</Button>
+                    <Button type={'submit'} variant={"primary"} onClick={() => dispatch({type: REGISTER_CANCEL})}>Cancel</Button>
                 </Row>
             </Form>
         </Card.Body>

@@ -9,11 +9,11 @@ export default function MessagesList({_useSelector = useSelector}) {
         <Card>
             <Card.Header><h5>Messages</h5></Card.Header>
             <Card.Body>
-                {messages.map(message => (loggedInUser === message.from || loggedInUser === message.to) ?
-                    <div key={message.id}>
-                        {message.message}
+                {messages.map((msg, index) => (loggedInUser === msg.from || loggedInUser === msg.to) ?
+                    <div key={index}>
+                        {msg.message}
                         <div>
-                            <sub>{message.from} {message.date.toLocaleString()}</sub>
+                            <sub>{msg.from} {msg.date.toLocaleString()}</sub>
                         </div>
                         <hr />
                     </div> :

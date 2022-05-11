@@ -15,7 +15,9 @@ it('should show post, user, date', () => {
         date: now,
         posts: [{id: 1, message: 'new post', user: 'someuser', date: new Date()}]
     }
-    const state = {loggedInUser: user, postToThreadId: threadId, postToAdd: postId}
+    const state = {
+        // loggedInUser: user,
+        postToThreadId: threadId, postToAdd: postId}
     render(<Posts thread={thread} _useDispatch={() => dispatch} _useSelector={fn => fn({state})} _AddPost = {() => {}}/>)
     expect(screen.getByText('new post')).toBeInTheDocument()
     expect(screen.getByText('someuser')).toBeInTheDocument()

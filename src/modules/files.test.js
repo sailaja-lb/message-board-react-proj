@@ -15,15 +15,15 @@ import reducer, {
 
 it('should initialed with isLoggedIn false', () => {
     const state = reducer()
-    expect(state?.isLoggedIn).toBe(false)
+    expect(state.isLoggedIn).toBe(false)
 })
 it('should initialed with loginErrorMessage to false', () => {
     const state = reducer()
-    expect(state?.loginErrorMessage).toBe(false)
+    expect(state.loginErrorMessage).toBe(false)
 })
 it('should initialed with successfulRegisterMessage to false', () => {
     const state = reducer()
-    expect(state?.successfulRegisterMessage).toBe(false)
+    expect(state.successfulRegisterMessage).toBe(false)
 })
 
 it('should set loginErrorMessage to true' +
@@ -36,7 +36,7 @@ it('should set loginErrorMessage to true' +
     })
     state.loginErrorMessage = false
     const loginState = reducer(undefined, {type: LOGIN_ERROR})
-    expect(loginState?.loginErrorMessage).toBe(true)
+    expect(loginState.loginErrorMessage).toBe(true)
 })
 
 it('should set isLoggedIn to true when the LOGIN action is performed and credentials are correct', () => {
@@ -46,19 +46,17 @@ it('should set isLoggedIn to true when the LOGIN action is performed and credent
             password: 'mypass'
         }
     })
-    expect(state?.isLoggedIn).toBe(true)
+    expect(state.isLoggedIn).toBe(true)
 })
 
 it('should initialed with isRegister false', () => {
     const state = reducer()
-    expect(state?.isRegister).toBe(false)
+    expect(state.isRegister).toBe(false)
 })
 
 it('should set isRegister to true when the Register action is performed', () => {
-    const currentState= reducer()
-    currentState.isRegister = false
-    const state = reducer(currentState, {type: REGISTER})
-    expect(state?.isRegister).toBe(true)
+    const state = reducer(undefined, {type: REGISTER})
+    expect(state.isRegister).toBe(true)
 })
 it('should set isRegister to false when the CREATE_USER action is performed and credentials are entered', () => {
     const state = reducer(undefined, {
@@ -67,15 +65,15 @@ it('should set isRegister to false when the CREATE_USER action is performed and 
             password: ''
         }
     })
-    expect(state?.isRegister).toBe(false)
-    expect(state?.isLoggedIn).toBe(false)
+    expect(state.isRegister).toBe(false)
+    expect(state.isLoggedIn).toBe(false)
 })
 
 it('should set isLoggedIn to false when the LOGOUT action is performed', () => {
     const currentState = reducer()
     currentState.isLoggedIn = true
     const state = reducer(currentState, {type: LOGOUT})
-    expect(state?.isLoggedIn).toBe(false)
+    expect(state.isLoggedIn).toBe(false)
 })
 
 it('should start w/ threadToAdd null', () => {
@@ -176,7 +174,7 @@ it('should set postToAdd when ADD_POST action is performed', () => {
     })
     expect(state.postToThreadId).toBe(thread.id)
 })
-it('should set postToAdd and potToThreadId to null when CANCEL_ADD_POST is performed', () => {
+it('should set postToAdd and postToThreadId to null when CANCEL_ADD_POST is performed', () => {
     const currentState = reducer()
     currentState.postToAdd = {message: 'msg', user: 'user1', date: new Date() }
     currentState.postToThreadId = 0

@@ -14,7 +14,7 @@ export default function Posts({thread, _useDispatch = useDispatch, _useSelector 
     return <>
         <div style={{marginLeft: 20}}>
             {(postToAdd && postToThreadId === id) ? <_AddPost threadId={id} /> : null}
-            {posts.map(post => <div key={post.id}>
+            {posts.map((post, index) => <div key={index}>
                 <Card>
                     <Card.Body>
                         {post.message}

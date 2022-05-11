@@ -8,7 +8,7 @@ test('should supply thread, onThreadChange, onCancel, and onApply to ThreadInput
     let _onCancel
     let _onApply
     const _ThreadInput = ({thread, onThreadChange, onCancel, onApply}) => {
-        _onThreadChange=onThreadChange
+        _onThreadChange = onThreadChange
         _onCancel = onCancel
         _onApply = onApply
         return <>{thread}</>

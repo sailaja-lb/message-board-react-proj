@@ -18,8 +18,8 @@ export default function UsersList({_useSelector = useSelector, _useDispatch = us
         <Card>
             <Card.Header><h5>Users List</h5></Card.Header>
             <Card.Body>
-                {users.map(user => (loggedInUser !== user.username) ?
-                    <div key={user.username}>
+                {users.map((user, index) => (loggedInUser !== user.username) ?
+                    <div key={index}>
                         <a href={"#"} onClick={event => createPersonalMessage(event, user.username)}>
                             {user.username}
                         </a>

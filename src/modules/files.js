@@ -3,6 +3,7 @@ import {v4} from "uuid";
 export const LOGIN = 'files/LOGIN'
 export const LOGIN_ERROR = 'files/LOGIN_ERROR'
 export const REGISTER = 'files/REGISTER'
+export const REGISTER_CANCEL = 'files/REGISTER_CANCEL'
 export const CREATE_USER = 'files/CREATE_USER'
 export const LOGOUT = 'files/LOGOUT'
 export const USERS = 'files/USERS'
@@ -27,9 +28,9 @@ const initialState = {
     postToThreadId: null,
     users: [],
     threads: [],
-    successfulRegisterMessage: false,
     loggedInUser: null,
     messages: [],
+    successfulRegisterMessage: false,
     loginErrorMessage: false
 }
 
@@ -54,10 +55,14 @@ export default function reducer(state = initialState, action) {
             return {
                 ...state,
                 isRegister: true,
-                //loginErrorMessage: false,
-                // successfulRegisterMessage: false
+                loginErrorMessage: false,
+                successfulRegisterMessage: false
             }
-
+        case REGISTER_CANCEL:
+            return{
+                ...state,
+                isRegister: false,
+            }
         case CREATE_USER:
             return {
                 ...state,

@@ -1,5 +1,5 @@
 import {Button, Card, Col, Form, Row} from "react-bootstrap";
-import {BsFileEarmarkPlus, BsFileEarmarkX, BsXCircleFill} from "react-icons/bs";
+import {BsFileEarmarkPlus, BsXCircleFill} from "react-icons/bs";
 
 export default function ThreadInput({thread, onThreadChange, onCancel, onApply}) {
     const {title, date} = thread
@@ -27,8 +27,8 @@ export default function ThreadInput({thread, onThreadChange, onCancel, onApply})
             </Row>
         </Card.Header>
         <Card.Body>
-            <Form.Control as="textarea" rows={2} defaultValue={title}
-                          placeholder='Title'
+            <Form.Control as="textarea" rows={2} placeholder='Title'
+                          defaultValue={title}
                           onChange={e => onThreadChange({...thread, title: e.target.value})}/>
         </Card.Body>
     </Card>
