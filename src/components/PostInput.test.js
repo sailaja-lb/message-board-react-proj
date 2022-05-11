@@ -56,30 +56,30 @@ it('should call onApply when the apply button is clicked', () => {
     expect(apply).toHaveBeenCalled()
 })
 
-// it('should dispatch EDIT_POST when any field changes', () => {
-//     const postToEdit = {
-//         date: new Date(),
-//         message: 'Message1',
-//         user: ''
-//     }
-//
-//     const setPost = jest.fn()
-//     const cancel = jest.fn()
-//     const apply = jest.fn()
-//
-//     render(<PostInput post={postToEdit} onPostChange={setPost} onCancel={cancel}
-//                         onApply={apply}/>)
-//     const titleElement = screen.getByDisplayValue(postToEdit.message)
-//     const dateElement = screen.getByDisplayValue(postToEdit.date.toISOString().substring(0,10))
-//     const newText = 'A'
-//     userEvent.type(titleElement, newText)
-//     let post = {...postToEdit, message: postToEdit.message + newText}
-//     expect(setPost).toHaveBeenCalledWith(post)
-//
-//     const yesterday = new Date()
-//     yesterday.setDate(yesterday.getDate() - 1)
-//     yesterday.setTime(0)
-//     userEvent.type(dateElement, yesterday.toISOString().substring(0, 10))
-//     post = {...postToEdit, date: yesterday}
-//     expect(setPost).toHaveBeenCalledWith(post)
-// })
+it('should update post when any field changes', () => {
+    const editPost = {
+        date: new Date(),
+        message: 'Message1',
+        user: ''
+    }
+
+    const setPost = jest.fn()
+    const cancel = jest.fn()
+    const apply = jest.fn()
+
+    render(<PostInput post={editPost} onPostChange={setPost} onCancel={cancel}
+                        onApply={apply}/>)
+    const postElement = screen.getByDisplayValue(editPost.message)
+    const dateElement = screen.getByDisplayValue(editPost.date.toISOString().substring(0,10))
+    const newPost = 'A'
+    userEvent.type(postElement, newPost)
+    let post = {...editPost, message: editPost.message + newPost}
+    expect(setPost).toHaveBeenCalledWith(post)
+
+    const yesterday = new Date()
+    yesterday.setDate(yesterday.getDate() - 1)
+    yesterday.setTime(0)
+    userEvent.type(dateElement, yesterday.toISOString().substring(0, 10))
+    post = {...editPost, date: yesterday}
+    expect(setPost).toHaveBeenCalledWith(post)
+})
