@@ -28,18 +28,21 @@ it('should initialed with successfulRegisterMessage to false', () => {
 
 it('should set loginErrorMessage to true' +
     'when the LOGIN action is performed and credentials are wrong', () => {
-    const state= reducer(undefined, {
-        type: LOGIN, credentials: {
-            username: '',
-            password: ''
-        }
-    })
-    state.loginErrorMessage = false
+    // const state= reducer(undefined, {
+    //     type: LOGIN, credentials: {
+    //         username: '',
+    //         password: ''
+    //     }
+    // })
+    const currentState = reducer()
+    currentState.loginErrorMessage = false
+    //state.loginErrorMessage = false
     const loginState = reducer(undefined, {type: LOGIN_ERROR})
     expect(loginState.loginErrorMessage).toBe(true)
 })
 
-it('should set isLoggedIn to true when the LOGIN action is performed and credentials are correct', () => {
+it('should set isLoggedIn to true when the LOGIN action is performed ' +
+    'and credentials are correct', () => {
     const state = reducer(undefined, {
         type: LOGIN, credentials: {
             username: 'sailaja',
@@ -47,6 +50,7 @@ it('should set isLoggedIn to true when the LOGIN action is performed and credent
         }
     })
     expect(state.isLoggedIn).toBe(true)
+
 })
 
 it('should initialed with isRegister false', () => {
@@ -55,10 +59,13 @@ it('should initialed with isRegister false', () => {
 })
 
 it('should set isRegister to true when the Register action is performed', () => {
+    const currentState = reducer()
+    expect(currentState.isRegister).toBe(false)
     const state = reducer(undefined, {type: REGISTER})
     expect(state.isRegister).toBe(true)
 })
-it('should set isRegister to false when the CREATE_USER action is performed and credentials are entered', () => {
+it('should set isRegister to false when the CREATE_USER action is performed ' +
+    'and credentials are entered', () => {
     const state = reducer(undefined, {
         type: CREATE_USER, credentials: {
             username: '',
@@ -70,9 +77,9 @@ it('should set isRegister to false when the CREATE_USER action is performed and 
 })
 
 it('should set isLoggedIn to false when the LOGOUT action is performed', () => {
-    const currentState = reducer()
-    currentState.isLoggedIn = true
-    const state = reducer(currentState, {type: LOGOUT})
+    // const currentState = reducer()
+    // currentState.isLoggedIn = true
+    const state = reducer(undefined, {type: LOGOUT})
     expect(state.isLoggedIn).toBe(false)
 })
 
@@ -93,13 +100,14 @@ it('should set threadToAdd when ADD_THREAD action is performed', () => {
 })
 
 it('should set threadToAdd to null when CANCEL_ADD_THREAD is performed', () => {
-    const currentState = reducer()
-    currentState.threadToAdd = 'some thread'
-    const state = reducer(currentState, {type: CANCEL_ADD_THREAD})
+    // const currentState = reducer()
+    // currentState.threadToAdd = 'some thread'
+    const state = reducer(undefined, {type: CANCEL_ADD_THREAD})
     expect(state.threadToAdd).toBeNull()
 })
 
-it('should add a thread with a unique id and set threadToAdd to null when APPLY_ADD_THREAD action is performed', () => {
+it('should add a thread with a unique id and set threadToAdd to null ' +
+    'when APPLY_ADD_THREAD action is performed', () => {
     const existing = ['first']
     const thread = {title: 'my thread',posts:[]}
     const currentState = reducer()
@@ -153,16 +161,16 @@ it('should update all fields of a thread and set threadToEdit to null when APPLY
 })
 
 it('should set threadToEdit to null when CANCEL_EDIT_THREAD is performed', () => {
-    const currentState = reducer()
-    currentState.threadToEdit = {title: 'thread title', date: new Date(), id: 0, user: 'user1' }
-    const state = reducer(currentState, {type: CANCEL_EDIT_THREAD})
+    // const currentState = reducer()
+    // currentState.threadToEdit = {title: 'thread title', date: new Date(), id: 0, user: 'user1' }
+    const state = reducer(undefined, {type: CANCEL_EDIT_THREAD})
     expect(state.threadToEdit).toBeNull()
 })
 
 //apply add post
 it('should set postToAdd when ADD_POST action is performed', () => {
     const thread = {
-        id : 0
+        id : 1
     }
     const loggedInUser = 'some user'
     const state = reducer({loggedInUser}, {type: ADD_POST, thread})
@@ -175,10 +183,10 @@ it('should set postToAdd when ADD_POST action is performed', () => {
     expect(state.postToThreadId).toBe(thread.id)
 })
 it('should set postToAdd and postToThreadId to null when CANCEL_ADD_POST is performed', () => {
-    const currentState = reducer()
-    currentState.postToAdd = {message: 'msg', user: 'user1', date: new Date() }
-    currentState.postToThreadId = 0
-    const state = reducer(currentState, {type: CANCEL_ADD_POST})
+    // const currentState = reducer()
+    // currentState.postToAdd = {message: 'msg', user: 'user1', date: new Date() }
+    // currentState.postToThreadId = 0
+    const state = reducer(undefined, {type: CANCEL_ADD_POST})
     expect(state.postToAdd).toBeNull()
     expect(state.postToThreadId).toBeNull()
 })
@@ -187,29 +195,29 @@ it('should set USERS state when users action is performed', () => {
         {username: 'user1', password: 'pass1'},
         {username: 'user2', password: 'pass2'}
         ]
-    const newUser = {username: 'user3', password: 'pass3'}
+    const user = {username: 'user3', password: 'pass3'}
     const currentState = reducer()
     currentState.users = existingUsers
-    const state = reducer(currentState, {type: USERS, user:newUser})
-    expect(state.users).toStrictEqual([...existingUsers, newUser])
+    const state = reducer(currentState, {type: USERS, user})
+    expect(state.users).toStrictEqual([...existingUsers, user])
 })
 it('should set POST_MESSAGES state when action is performed',() => {
     const existingMsgs =[
         {message: 'msg1'},
         {message: 'msg2'}
     ]
-    const newMsg = {message: 'msg3', date: new Date()}
+    const message = {message: 'msg3', date: new Date()}
     const currentState = reducer()
     currentState.messages = existingMsgs
-    const state = reducer(currentState, {type: POST_MESSAGE, message:newMsg})
-    expect(state.messages).toStrictEqual([...existingMsgs, {...newMsg, id: expect.stringMatching(
+    const state = reducer(currentState, {type: POST_MESSAGE, message:message})
+    expect(state.messages).toStrictEqual([...existingMsgs, {...message, id: expect.stringMatching(
         /[\da-f]{8}-[\da-f]{4}-[\da-f]{4}-[\da-f]{4}-[\da-f]{12}/)}])
 })
 it('should set APPLY_ADD_POST when clicked', () => {
     const currentState = reducer()
-    currentState.threads = [{title: 'thread1', id: 0, posts: []}]
+    currentState.threads = [{title: 'thread1', id: 1, posts: []}]
     const newPost = {message: 'post1'}
-    const state = reducer(currentState, {type: APPLY_ADD_POST, post: newPost, threadId: 0})
-    expect(state.threads).toStrictEqual([{title: 'thread1', id: 0, posts: [{...newPost, id: expect.stringMatching(
+    const state = reducer(currentState, {type: APPLY_ADD_POST, post: newPost, threadId: 1})
+    expect(state.threads).toStrictEqual([{title: 'thread1', id: 1, posts: [{...newPost, id: expect.stringMatching(
         /[\da-f]{8}-[\da-f]{4}-[\da-f]{4}-[\da-f]{4}-[\da-f]{12}/)}]}])
 })

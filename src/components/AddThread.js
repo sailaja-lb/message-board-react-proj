@@ -3,7 +3,8 @@ import {APPLY_ADD_THREAD, CANCEL_ADD_THREAD} from "../modules/files";
 import {useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
 
-export default function AddThread({_useDispatch = useDispatch, _useSelector = useSelector, _ThreadInput = ThreadInput}) {
+export default function AddThread({_useDispatch = useDispatch, _useSelector = useSelector,
+                                      _ThreadInput = ThreadInput}) {
     const dispatch = _useDispatch()
     const loggedInUser = _useSelector((state) => state.loggedInUser)
     const [thread, setThread] = useState({

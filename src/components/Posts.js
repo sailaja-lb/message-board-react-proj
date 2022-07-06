@@ -14,12 +14,12 @@ export default function Posts({thread, _useDispatch = useDispatch, _useSelector 
     return <>
         <div style={{marginLeft: 20}}>
             {(postToAdd && postToThreadId === id) ? <_AddPost threadId={id} /> : null}
-            {posts.map((post, index) => <div key={index}>
+            {posts.map((a, index) => <div key={index}>
                 <Card>
                     <Card.Body>
-                        {post.message}
+                        {a.message}
                         <div>
-                            <sub>{post.user} </sub><sub> {post.date.toISOString().substring(0, 10)}</sub>
+                            <sub>{a.user} </sub><sub> {a.date.toISOString().substring(0, 10)}</sub>
                         </div>
                     </Card.Body>
                 </Card>
